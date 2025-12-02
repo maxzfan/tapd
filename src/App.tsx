@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Mail, Facebook, Twitter, Instagram, Linkedin, Menu, ChevronDown } from 'lucide-react';
+import { Mail, Menu, ChevronDown } from 'lucide-react';
 
 export default function App() {
   return (
@@ -16,8 +16,16 @@ export default function App() {
                 About
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all group-hover:w-full"></span>
             </a>
+            <a href="#sponsors" className="hover:text-orange-200 transition-colors relative group">
+                Sponsors
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all group-hover:w-full"></span>
+            </a>
             <a href="#download" className="hover:text-orange-200 transition-colors relative group">
                 Download
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all group-hover:w-full"></span>
+            </a>
+            <a href="mailto:stanfordtapd@gmail.com" className="hover:text-orange-200 transition-colors relative group">
+                Contact
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all group-hover:w-full"></span>
             </a>
             <Link to="/privacy" className="hover:text-orange-200 transition-colors relative group">
@@ -26,30 +34,14 @@ export default function App() {
             </Link>
         </div>
         <div className="flex items-center gap-6">
-            <button className="p-2 hover:bg-white/10 rounded-full transition-colors">
+            <a href="mailto:stanfordtapd@gmail.com" className="p-2 hover:bg-white/10 rounded-full transition-colors">
                 <Mail size={20} strokeWidth={2} />
-            </button>
+            </a>
              <button className="md:hidden p-2">
                 <Menu size={24} />
             </button>
         </div>
       </nav>
-
-      {/* Sidebar Elements (Fixed Position) */}
-      <div className="fixed left-10 top-1/2 -translate-y-1/2 hidden md:flex flex-col gap-8 items-center z-40 pointer-events-none">
-        <div className="h-32 w-[2px] bg-white/30 rounded-full"></div>
-        <div className="writing-vertical-lr -rotate-180 text-[10px] font-bold tracking-[0.2em] uppercase opacity-60 transition-opacity cursor-default pointer-events-auto hover:opacity-100">
-            Follow Us
-        </div>
-        <div className="h-32 w-[2px] bg-white/30 rounded-full"></div>
-      </div>
-
-      <div className="fixed right-10 top-1/2 -translate-y-1/2 hidden md:flex flex-col gap-8 items-center z-40">
-         <a href="#" className="hover:scale-110 transition-transform opacity-80 hover:opacity-100"><Facebook size={20} /></a>
-         <a href="#" className="hover:scale-110 transition-transform opacity-80 hover:opacity-100"><Twitter size={20} /></a>
-         <a href="#" className="hover:scale-110 transition-transform opacity-80 hover:opacity-100"><Instagram size={20} /></a>
-         <a href="#" className="hover:scale-110 transition-transform opacity-80 hover:opacity-100"><Linkedin size={20} /></a>
-      </div>
 
 
       {/* Main Content Sections */}
@@ -71,11 +63,11 @@ export default function App() {
                 <h1 className="text-[18vw] md:text-[20vw] font-black leading-none tracking-tighter select-none text-white drop-shadow-lg">
                     tapd.
                 </h1>
-                <div className="absolute bottom-[-20vh] md:bottom-[-10vh] left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 z-30 animate-bounce opacity-70">
-                    <a href="#about" className="p-2 hover:text-orange-200 transition-colors">
-                        <ChevronDown size={32} strokeWidth={1.5} />
-                    </a>
-                </div>
+            </div>
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 z-30 animate-bounce opacity-70">
+                <a href="#about" className="p-2 hover:text-orange-200 transition-colors">
+                    <ChevronDown size={32} strokeWidth={1.5} />
+                </a>
             </div>
         </section>
 
@@ -83,23 +75,48 @@ export default function App() {
         <section id="about" className="min-h-screen w-full flex items-center justify-center relative bg-black/10 snap-start py-20">
             <div className="max-w-4xl px-6 text-center z-10">
                 <h2 className="text-4xl md:text-6xl font-black mb-12 tracking-tight">
-                    WHAT IS <span className="text-orange-200">tapd</span>?
+                    What is <span className="text-orange-200">tapd</span>?
                 </h2>
                 <p className="text-2xl md:text-4xl font-light leading-relaxed tracking-wide opacity-90">
-                    A Stanford water gun <br className="hidden md:block" />
-                    <span className="font-bold text-white drop-shadow-md">senior assassin</span> <br className="hidden md:block" />
-                    for freshmen.
+                    Stanford's inaugural <br className="hidden md:block" />
+                    <span className="font-bold text-white drop-shadow-md">senior assassin</span> for freshmen <br className="hidden md:block" />
+                    powered by local partners.
                 </p>
                  <div className="mt-16">
-                    <button className="px-8 py-4 border-2 border-white text-white font-bold uppercase tracking-widest hover:bg-white hover:text-[#d94e1f] transition-all duration-300 rounded-full">
-                        Join the Game
-                    </button>
+                    <a href="https://www.instagram.com/tapdstanford/" target="_blank" rel="noopener noreferrer" className="inline-block px-8 py-4 border-2 border-white text-white font-bold uppercase tracking-widest hover:bg-white hover:text-[#d94e1f] transition-all duration-300 rounded-full">
+                        Join the Waitlist
+                    </a>
                 </div>
             </div>
         </section>
 
-        {/* SECTION 3: DOWNLOAD */}
-        <section id="download" className="min-h-screen w-full flex items-center justify-center relative snap-start py-20">
+        {/* SECTION 3: SPONSORS */}
+        <section id="sponsors" className="min-h-screen w-full flex items-center justify-center relative snap-start py-20">
+            <div className="max-w-4xl px-6 text-center z-10">
+                 <h2 className="text-4xl md:text-6xl font-black mb-12 tracking-tight">
+                    Our <span className="text-orange-200">Sponsors</span>
+                </h2>
+                <p className="text-xl md:text-3xl font-light leading-relaxed tracking-wide opacity-80 mb-12">
+                    Proudly supported by
+                </p>
+                 <div className="flex justify-center items-center opacity-90">
+                    <div className="flex flex-col items-center gap-4">
+                        <a href="https://ases.stanford.edu/" target="_blank" rel="noopener noreferrer" className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20 h-64 w-64 flex items-center justify-center hover:bg-white/20 transition-colors">
+                            <img src="/ases.jpeg" alt="Stanford ASES Logo" className="max-w-full max-h-full object-contain opacity-80 hover:opacity-100 transition-opacity mix-blend-lighten filter grayscale hover:grayscale-0" />
+                        </a>
+                        <p className="text-lg md:text-xl font-medium tracking-wide opacity-90">Stanford ASES</p>
+                    </div>
+                </div>
+                 <div className="mt-16">
+                    <a href="mailto:stanfordtapd@gmail.com" className="text-sm uppercase tracking-widest hover:text-orange-200 transition-colors opacity-70 hover:opacity-100">
+                        Become a Sponsor →
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        {/* SECTION 4: DOWNLOAD */}
+        <section id="download" className="min-h-screen w-full flex items-center justify-center relative bg-black/10 snap-start py-20">
              <div className="text-center z-10 flex flex-col items-center gap-8">
                 <p className="text-lg md:text-xl font-light tracking-widest uppercase opacity-90 mb-2">
                     JANUARY 2026
