@@ -79,7 +79,7 @@ export default function App() {
                 </h2>
                 <p className="text-2xl md:text-4xl font-light leading-relaxed tracking-wide opacity-90">
                     Stanford's inaugural <br className="hidden md:block" />
-                    <span className="font-bold text-white drop-shadow-md">senior assassin</span> for freshmen <br className="hidden md:block" />
+                    <span className="font-bold text-white drop-shadow-md">freshmen assassin</span> <br className="hidden md:block" />
                     powered by local partners.
                 </p>
                  <div className="mt-16">
