@@ -1,183 +1,154 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { Mail, Facebook, Twitter, Instagram, Linkedin, Menu, ChevronDown } from 'lucide-react';
 
-// Replace these with your actual app store URLs
-const APP_STORE_URL = "https://apps.apple.com/app/YOUR_APP_ID";
-const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=YOUR_PACKAGE_NAME";
-
-type Platform = "ios" | "android" | "unknown";
-
-function App() {
-  const [platform, setPlatform] = useState<Platform>("unknown");
-  const [showSpinner, setShowSpinner] = useState(true);
-
-  useEffect(() => {
-    const detectPlatform = (): Platform => {
-      const userAgent = navigator.userAgent || (navigator as any).vendor || (window as any).opera;
-
-      // iOS detection
-      if (/iPad|iPhone|iPod/.test(userAgent) && !(window as any).MSStream) {
-        return "ios";
-      }
-
-      // Android detection
-      if (/android/i.test(userAgent)) {
-        return "android";
-      }
-
-      return "unknown";
-    };
-
-    const detectedPlatform = detectPlatform();
-    setPlatform(detectedPlatform);
-
-    // Auto-redirect for mobile devices
-    if (detectedPlatform === "ios") {
-      setTimeout(() => {
-        window.location.href = APP_STORE_URL;
-      }, 1000);
-    } else if (detectedPlatform === "android") {
-      setTimeout(() => {
-        window.location.href = PLAY_STORE_URL;
-      }, 1000);
-    } else {
-      // Hide spinner for desktop
-      setShowSpinner(false);
-    }
-  }, []);
-
+export default function App() {
   return (
-    <div className="min-h-screen bg-[#4A5568] font-[Poppins,system-ui,sans-serif]">
-      {/* Navigation Bar */}
-      <nav className="bg-[#E8DFD3] px-8 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <div className="flex items-center gap-3">
-          <div className="w-12 h-12 bg-[#5C2E2E] rounded-lg flex items-center justify-center">
-            <span className="text-white font-black text-2xl">T</span>
-          </div>
-          <div className="text-[#5C2E2E] font-black text-xl uppercase tracking-tight">
-            TAPD OUT
-          </div>
+    <div className="min-h-screen w-full bg-gradient-to-br from-[#d94e1f] to-[#f09819] relative font-[Poppins,sans-serif] text-white selection:bg-orange-200 selection:text-orange-900 overflow-x-hidden">
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full px-8 py-6 flex justify-between items-center z-50 bg-gradient-to-b from-[#d94e1f]/80 to-transparent backdrop-blur-[2px]">
+        <div className="text-2xl font-black tracking-wider cursor-pointer" onClick={() => window.scrollTo(0, 0)}>tapd.</div>
+        <div className="hidden md:flex gap-12 text-sm font-bold uppercase tracking-widest">
+            <a href="#home" className="hover:text-orange-200 transition-colors relative group">
+                Home
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all group-hover:w-full"></span>
+            </a>
+            <a href="#about" className="hover:text-orange-200 transition-colors relative group">
+                About
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all group-hover:w-full"></span>
+            </a>
+            <a href="#download" className="hover:text-orange-200 transition-colors relative group">
+                Download
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all group-hover:w-full"></span>
+            </a>
+            <Link to="/privacy" className="hover:text-orange-200 transition-colors relative group">
+                Privacy
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all group-hover:w-full"></span>
+            </Link>
         </div>
-
-        {/* Navigation Links */}
-        <div className="flex items-center gap-8">
-          <a href="#features" className="text-[#5C2E2E] font-semibold hover:text-orange-600 transition-colors">
-            Features
-          </a>
-          <a href="#about" className="text-[#5C2E2E] font-semibold hover:text-orange-600 transition-colors">
-            About Us
-          </a>
-          <Link to="/privacy" className="text-[#5C2E2E] font-semibold hover:text-orange-600 transition-colors">
-            Privacy Policy
-          </Link>
-          <button className="px-6 py-2 border-2 border-[#5C2E2E] text-[#5C2E2E] font-bold rounded-lg hover:bg-[#5C2E2E] hover:text-white transition-colors">
-            Log in
-          </button>
+        <div className="flex items-center gap-6">
+            <button className="p-2 hover:bg-white/10 rounded-full transition-colors">
+                <Mail size={20} strokeWidth={2} />
+            </button>
+             <button className="md:hidden p-2">
+                <Menu size={24} />
+            </button>
         </div>
       </nav>
 
-      {/* Main Content */}
-      <div className="flex items-center justify-center px-5 py-20">
-        {/* Hero Section with Orange Background */}
-        <div className="max-w-6xl w-full bg-[#FF5722] rounded-3xl px-16 py-20 shadow-2xl">
-          <div className="flex items-center justify-between">
-            {/* Left Content */}
-            <div className="flex-1">
-              <h1 className="text-7xl font-black text-[#2D1B1B] mb-4 leading-tight">
-                Save your<br />
-                team from<br />
-                <span className="text-[#2D1B1B] font-black" style={{ 
-                  WebkitTextStroke: "2px #FF5722",
-                  WebkitTextFillColor: "transparent"
-                }}>
-                  burnout!
-                </span>
-              </h1>
+      {/* Sidebar Elements (Fixed Position) */}
+      <div className="fixed left-10 top-1/2 -translate-y-1/2 hidden md:flex flex-col gap-8 items-center z-40 pointer-events-none">
+        <div className="h-32 w-[2px] bg-white/30 rounded-full"></div>
+        <div className="writing-vertical-lr -rotate-180 text-[10px] font-bold tracking-[0.2em] uppercase opacity-60 transition-opacity cursor-default pointer-events-auto hover:opacity-100">
+            Follow Us
+        </div>
+        <div className="h-32 w-[2px] bg-white/30 rounded-full"></div>
+      </div>
 
-              {/* Email Input */}
-              <div className="flex mt-12 max-w-xl">
-                <input
-                  type="email"
-                  placeholder="Enter E-mail"
-                  className="flex-1 px-6 py-4 text-lg bg-white rounded-l-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+      <div className="fixed right-10 top-1/2 -translate-y-1/2 hidden md:flex flex-col gap-8 items-center z-40">
+         <a href="#" className="hover:scale-110 transition-transform opacity-80 hover:opacity-100"><Facebook size={20} /></a>
+         <a href="#" className="hover:scale-110 transition-transform opacity-80 hover:opacity-100"><Twitter size={20} /></a>
+         <a href="#" className="hover:scale-110 transition-transform opacity-80 hover:opacity-100"><Instagram size={20} /></a>
+         <a href="#" className="hover:scale-110 transition-transform opacity-80 hover:opacity-100"><Linkedin size={20} /></a>
+      </div>
+
+
+      {/* Main Content Sections */}
+      <main className="w-full">
+        
+        {/* SECTION 1: HOME */}
+        <section id="home" className="min-h-screen w-full flex items-center justify-center relative snap-start">
+            {/* Background Water Gun (Absolute to Section) */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] md:w-[45%] max-w-6xl z-0 pointer-events-none opacity-30">
+                <img 
+                    src="/water-gun.png" 
+                    alt="Orange Water Gun" 
+                    className="w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.3)] rotate-[-10deg] animate-float contrast-125"
+                    style={{ animation: 'float 6s ease-in-out infinite' }}
                 />
-                <button className="px-8 py-4 bg-[#FFC107] text-[#2D1B1B] font-black text-lg rounded-r-lg hover:bg-yellow-500 transition-colors">
-                  Get Started
-                </button>
-              </div>
-
-              {/* Spinner */}
-              {showSpinner && (
-                <div className="mt-8">
-                  <div className="inline-flex items-center gap-3 text-white font-semibold">
-                    <div className="w-6 h-6 border-3 border-white border-t-transparent rounded-full animate-spin"></div>
-                    Detecting your device...
-                  </div>
-                </div>
-              )}
-
-              {/* Download buttons */}
-              {!showSpinner && (
-                <div className="flex gap-4 mt-8">
-                  {(platform === "ios" || platform === "unknown") && (
-                    <a
-                      href={APP_STORE_URL}
-                      className="px-8 py-4 bg-[#2D1B1B] text-white rounded-lg font-bold hover:bg-[#1a0f0f] transition-colors shadow-lg"
-                    >
-                      📱 App Store
-                    </a>
-                  )}
-
-                  {(platform === "android" || platform === "unknown") && (
-                    <a
-                      href={PLAY_STORE_URL}
-                      className="px-8 py-4 bg-[#2D1B1B] text-white rounded-lg font-bold hover:bg-[#1a0f0f] transition-colors shadow-lg"
-                    >
-                      📱 Google Play
-                    </a>
-                  )}
-                </div>
-              )}
             </div>
 
-            {/* Right Illustration Area */}
-            <div className="flex-1 flex items-center justify-center">
-              <div className="relative">
-                {/* Circular badge */}
-                <div className="absolute -top-8 right-0 w-32 h-32 border-4 border-[#2D1B1B] rounded-full flex items-center justify-center transform rotate-12">
-                  <div className="text-[#2D1B1B] font-bold text-sm text-center leading-tight transform -rotate-12">
-                    VIDEO<br />AUDIO<br />IMAGE<br />VIDEO
-                  </div>
+            <div className="text-center relative z-10 w-full flex flex-col items-center justify-center">
+                <h1 className="text-[18vw] md:text-[20vw] font-black leading-none tracking-tighter select-none text-white drop-shadow-lg">
+                    tapd.
+                </h1>
+                <div className="absolute bottom-[-20vh] md:bottom-[-10vh] left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 z-30 animate-bounce opacity-70">
+                    <a href="#about" className="p-2 hover:text-orange-200 transition-colors">
+                        <ChevronDown size={32} strokeWidth={1.5} />
+                    </a>
                 </div>
-                
-                {/* Main emoji/character */}
-                <div className="text-9xl">💧🔫</div>
-                
-                {/* Decorative elements */}
-                <div className="absolute -bottom-4 left-0 text-6xl opacity-70">💧</div>
-                <div className="absolute top-0 right-0 text-5xl opacity-50">💦</div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
+        </section>
 
-      {/* Bottom Section Preview */}
-      <div className="bg-[#E8DFD3] px-16 py-12">
-        <div className="max-w-6xl mx-auto">
-          <p className="text-[#8B6B6B] uppercase text-sm font-bold tracking-wider mb-4">
-            Best Team Mood Tool
-          </p>
-          <h2 className="text-5xl font-black text-[#FF5722] mb-2">
-            Industry leaders <span className="text-[#2D1B1B]">know</span>
-          </h2>
-        </div>
-      </div>
+        {/* SECTION 2: ABOUT */}
+        <section id="about" className="min-h-screen w-full flex items-center justify-center relative bg-black/10 snap-start py-20">
+            <div className="max-w-4xl px-6 text-center z-10">
+                <h2 className="text-4xl md:text-6xl font-black mb-12 tracking-tight">
+                    WHAT IS <span className="text-orange-200">tapd</span>?
+                </h2>
+                <p className="text-2xl md:text-4xl font-light leading-relaxed tracking-wide opacity-90">
+                    A Stanford water gun <br className="hidden md:block" />
+                    <span className="font-bold text-white drop-shadow-md">senior assassin</span> <br className="hidden md:block" />
+                    for freshmen.
+                </p>
+                 <div className="mt-16">
+                    <button className="px-8 py-4 border-2 border-white text-white font-bold uppercase tracking-widest hover:bg-white hover:text-[#d94e1f] transition-all duration-300 rounded-full">
+                        Join the Game
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        {/* SECTION 3: DOWNLOAD */}
+        <section id="download" className="min-h-screen w-full flex items-center justify-center relative snap-start py-20">
+             <div className="text-center z-10 flex flex-col items-center gap-8">
+                <p className="text-lg md:text-xl font-light tracking-widest uppercase opacity-90 mb-2">
+                    JANUARY 2026
+                </p>
+                <h2 className="text-5xl md:text-8xl font-black tracking-tighter opacity-40 hover:opacity-80 transition-opacity duration-500 cursor-default mb-8">
+                    COMING SOON
+                </h2>
+                
+                {/* Store Buttons */}
+                <div className="flex gap-6 justify-center items-center">
+                    <button className="flex items-center gap-3 px-6 py-3 rounded-xl border border-white/30 bg-white/10 hover:bg-white/20 transition-all backdrop-blur-sm hover:scale-105 group">
+                        <svg viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 opacity-70 group-hover:opacity-100 transition-opacity">
+                            <path d="M17.5,12.5c-0.3-2.7,2-4.1,2.2-4.1c-1.1-1.6-2.9-1.8-3.5-1.8c-1.5-0.2-3,0.9-3.7,0.9c-0.8,0-1.9-0.9-3.2-0.9C7.6,6.6,5.7,7.6,4.7,9.3c-2,3.5-0.5,8.6,1.4,11.4c0.9,1.4,2,2.9,3.4,2.9c1.4,0,1.9-0.9,3.6-0.9c1.7,0,2.1,0.9,3.6,0.9c1.5,0,2.4-1.3,3.3-2.7c1-1.5,1.4-2.9,1.5-3C21.4,16.9,17.8,15.2,17.5,12.5z M13,5.1C13.7,4.2,14.1,3,14,1.8c-1.2,0-2.6,0.8-3.3,1.7c-0.6,0.8-1.2,2-1,3.2C10.9,6.8,12.2,6,13,5.1z"/>
+                        </svg>
+                        <div className="text-left">
+                            <div className="text-[10px] uppercase tracking-wider opacity-70 group-hover:opacity-100">Download on the</div>
+                            <div className="text-sm font-bold opacity-80 group-hover:opacity-100">App Store</div>
+                        </div>
+                    </button>
+
+                    <button className="flex items-center gap-3 px-6 py-3 rounded-xl border border-white/30 bg-white/10 hover:bg-white/20 transition-all backdrop-blur-sm hover:scale-105 group">
+                        <svg viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 opacity-70 group-hover:opacity-100 transition-opacity">
+                            <path d="M3,20.5V3.5C3,2.9,3.3,2.6,3.7,2.4L12.7,10L3.7,17.6C3.3,17.4,3,17.1,3,20.5z M13.7,11L4.6,3.2l13.8,7.8L13.7,11z M14.7,12l4.1,4.1L5,20.2L14.7,12z M19.6,11.5L14.7,13l4.7,2.6C19.7,15.5,20,15.1,20,14.6C20,13.8,19.8,12.5,19.6,11.5z"/>
+                        </svg>
+                        <div className="text-left">
+                            <div className="text-[10px] uppercase tracking-wider opacity-70 group-hover:opacity-100">Get it on</div>
+                            <div className="text-sm font-bold opacity-80 group-hover:opacity-100">Google Play</div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+      </main>
+
+      {/* Global Styles for specific animations if needed */}
+      <style>{`
+        @keyframes float {
+          0% { transform: translateY(0px) rotate(-10deg); }
+          50% { transform: translateY(-20px) rotate(-5deg); }
+          100% { transform: translateY(0px) rotate(-10deg); }
+        }
+        .writing-vertical-lr {
+          writing-mode: vertical-lr;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+      `}</style>
     </div>
-  );
+  )
 }
-
-export default App;
-
-
